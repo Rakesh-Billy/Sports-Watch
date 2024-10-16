@@ -228,18 +228,19 @@ musicplayerhBtn.addEventListener("click", showMusicScreen);
 const calenBtn = document.getElementById("calendarBtn");
 calenBtn.addEventListener("click", showCalenderScreen);
 
-function showStopwatchScreen() {
-  homeScreen.style.display = "none";
-  menuScreen.style.display = "none";
-
-  stopwatchScreen.style.display = "flex"; // Show the stopwatch screen
-}
-
-// Function to return to home screen
 function showHomeScreen() {
   stopwatchScreen.style.display = "none";
   homeScreen.style.display = "flex"; // Show the home screen
 }
+
+
+function showStopwatchScreen() {
+  homeScreen.style.display = "none";
+  menuScreen.style.display = "none";
+  stopwatchScreen.style.display = "flex"; // Show the stopwatch screen
+}
+
+// Function to return to home screen
 
 function showMenuScreen() {
   stopwatchScreen.style.display = "none";
@@ -278,6 +279,15 @@ function showCalenderScreen() {
   calenderScreen.style.display = "flex";
 }
 
+document.addEventListener('touchend', (e) => {
+  const endY = e.changedTouches[0].clientY;
+  const diffY = startY - endY;
+
+  if (diffY > 50) { 
+    showHomeScreen();
+  }
+});
+
 // --------------CALCULATOR--------------
 
 function appendToDisplay(value) {
@@ -301,6 +311,7 @@ function calculate() {
     document.getElementById("display").value = "Error";
   }
 }
+
 
 // --------------WEATHER--------------
 
